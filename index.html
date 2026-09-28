@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>HamCraft Server Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f2f5f0;
+        --surface: #ffffff;
+        --surface-2: #e7ede5;
+        --surface-3: #dce6d9;
+        --text: #172019;
+        --muted: #4f5d52;
+        --line: #c5d1c2;
+        --green: #267742;
+        --green-strong: #175f32;
+        --green-soft: #d7efdc;
+        --amber: #a15b00;
+        --amber-soft: #fff0cf;
+        --shadow: 0 16px 40px rgba(27, 48, 31, 0.10);
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --max: 1160px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d120f;
+          --surface: #151c17;
+          --surface-2: #1c251e;
+          --surface-3: #243027;
+          --text: #eef5ee;
+          --muted: #b2c0b3;
+          --line: #334137;
+          --green: #64c77f;
+          --green-strong: #83e09a;
+          --green-soft: #173b22;
+          --amber: #ffc166;
+          --amber-soft: #392711;
+          --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(rgba(80, 121, 88, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(80, 121, 88, 0.045) 1px, transparent 1px),
+          var(--bg);
+        background-size: 32px 32px;
+        color: var(--text);
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      button, a { font: inherit; }
+      a { color: var(--green-strong); }
+      a:hover { text-decoration-thickness: 2px; }
+      :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--bg) 94%, transparent);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+      .nav-inner {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+      .server-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .status-cube {
+        width: 14px;
+        height: 14px;
+        background: var(--green);
+        box-shadow: inset -3px -3px 0 rgba(0,0,0,.18), inset 3px 3px 0 rgba(255,255,255,.13);
+      }
+      .tablist { display: flex; align-items: center; gap: 4px; }
+      .tab {
+        border: 0;
+        border-bottom: 3px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 22px 14px 17px;
+        font-weight: 600;
+      }
+      .tab:hover { color: var(--text); }
+      .tab[aria-selected="true"] {
+        color: var(--green-strong);
+        border-bottom-color: var(--green);
+      }
+
+      main {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+        padding: 58px 0 80px;
+      }
+      .panel[hidden] { display: none; }
+      .panel-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+        gap: 48px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+      .panel-head.is-single { grid-template-columns: minmax(0, 1fr); }
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+      }
+      h1, h2, h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        line-height: .98;
+        margin: 0;
+      }
+      h1, h2 {
+        max-width: 720px;
+        font-size: clamp(46px, 7vw, 76px);
+        letter-spacing: -.02em;
+      }
+      h3 { font-size: 28px; }
+      .lede {
+        margin: 0;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.55;
+      }
+      .section-title {
+        margin: 56px 0 20px;
+        font-size: 36px;
+        line-height: 1.1;
+      }
+
+      .hamcraft-intro {
+        margin: -6px 0 52px;
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .hamcraft-intro p {
+        max-width: 760px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+      .hamcraft-intro p + p { margin-top: 14px; }
+      .intro-callouts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 760px;
+        margin-top: 20px;
+      }
+      .intro-card {
+        padding: 18px 20px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .intro-card p { font-size: 15px; }
+      .intro-link {
+        display: inline;
+        border: 0;
+        background: transparent;
+        color: var(--green-strong);
+        cursor: pointer;
+        padding: 0;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+      .intro-link:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+
+      .start-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr);
+        gap: 24px;
+        align-items: start;
+      }
+      .steps {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+      }
+      .step {
+        display: grid;
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 18px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .step-number {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        background: var(--surface-3);
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-weight: 600;
+        border-radius: 7px;
+      }
+      .step h3 { margin: 2px 0 9px; font-size: 25px; }
+      .step p { margin: 0; color: var(--muted); }
+      .step strong { color: var(--text); }
+      .step a { font-weight: 600; }
+      code {
+        padding: 2px 6px;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        background: var(--surface-2);
+        color: var(--text);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: .88em;
+      }
+
+      .pack-card {
+        position: sticky;
+        top: 96px;
+        padding: 26px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg) 6px var(--radius-lg) 6px;
+        box-shadow: var(--shadow);
+      }
+      .pack-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+      }
+      .pack-label svg { color: var(--green); flex: 0 0 auto; }
+      .pack-card h3 { font-size: 34px; margin-bottom: 12px; }
+      .pack-card p { margin: 0 0 20px; color: var(--muted); }
+      .download-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 16px;
+        border-radius: 8px;
+        background: var(--green-strong);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: inset 0 -3px 0 rgba(0,0,0,.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        .download-button { color: #0b140d; }
+      }
+      .download-button:hover { filter: brightness(1.06); }
+      .pack-note {
+        margin-top: 13px !important;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .expiry {
+        margin-top: 16px;
+        padding: 12px 14px;
+        background: var(--amber-soft);
+        color: var(--amber);
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .connect-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(200px, .8fr);
+        gap: 24px;
+        margin-top: 30px;
+        padding: 28px;
+        background: var(--green-soft);
+        border: 1px solid color-mix(in srgb, var(--green) 45%, var(--line));
+        border-radius: 6px var(--radius-lg) 6px var(--radius-lg);
+      }
+      .connect-card h3 { margin-bottom: 8px; }
+      .connect-card p { margin: 0; color: var(--muted); }
+      .address-block {
+        align-self: center;
+        padding: 15px 16px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+      }
+      .address-label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+      }
+      .address-value { color: var(--amber); font-weight: 700; }
+
+      .release-list {
+        position: relative;
+        margin: 10px 0 0 14px;
+        padding: 0 0 0 38px;
+        list-style: none;
+      }
+      .release-list::before {
+        content: "";
+        position: absolute;
+        inset: 12px auto 16px 6px;
+        width: 2px;
+        background: var(--line);
+      }
+      .release {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr);
+        gap: 26px;
+        padding: 0 0 34px;
+      }
+      .release::before {
+        content: "";
+        position: absolute;
+        left: -38px;
+        top: 8px;
+        width: 14px;
+        height: 14px;
+        background: var(--bg);
+        border: 4px solid var(--green);
+        box-shadow: 0 0 0 5px var(--bg);
+      }
+      .release-name h3 { margin-bottom: 7px; }
+      .release-date {
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .release-copy {
+        padding: 22px 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 6px var(--radius-md) var(--radius-md) var(--radius-md);
+      }
+      .release-copy ul, .mod-copy ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .release-copy li + li { margin-top: 8px; }
+      .release-copy li::marker, .mod-copy li::marker { color: var(--green); }
+      .current-badge {
+        display: inline-block;
+        margin-top: 11px;
+        padding: 4px 8px;
+        background: var(--green-soft);
+        color: var(--green-strong);
+        border-radius: 4px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        margin: 0 0 48px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+      }
+      .principle { padding: 22px; background: var(--surface); }
+      .principle strong {
+        display: block;
+        margin-bottom: 5px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 24px;
+      }
+      .principle span { color: var(--muted); font-size: 14px; }
+
+      .mod-section + .mod-section { margin-top: 54px; }
+      .mod-section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 400px);
+        gap: 30px;
+        align-items: end;
+        margin-bottom: 20px;
+      }
+      .mod-section-head h3 { font-size: 38px; }
+      .mod-section-head p { margin: 0; color: var(--muted); }
+      .mod-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+      }
+      .full-mod-list {
+        margin-top: 68px;
+        padding-top: 4px;
+        border-top: 1px solid var(--line);
+      }
+      .full-mod-list > .section-title { margin-top: 34px; }
+      .full-mod-group + .full-mod-group { margin-top: 40px; }
+      .mod-group-title {
+        margin: 0 0 14px;
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .055em;
+        text-transform: uppercase;
+      }
+      .full-mod-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .mod {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 14px;
+        padding: 20px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .mod-mark {
+        width: 28px;
+        height: 28px;
+        margin-top: 2px;
+        background: var(--surface-3);
+        border: 1px solid var(--line);
+        box-shadow: inset -5px -5px 0 rgba(0,0,0,.08);
+      }
+      .highlight-mark {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        margin-top: 1px;
+        font-size: 20px;
+        line-height: 1;
+      }
+      .mod h4, .mod h5 {
+        margin: 0 0 6px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 25px;
+        line-height: 1.05;
+      }
+      .mod p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+      .mod .mod-name {
+        margin: 0 0 7px;
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .035em;
+        text-transform: uppercase;
+      }
+      .review-note {
+        display: inline-block;
+        margin-top: 8px;
+        color: var(--amber);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .required-libraries {
+        margin: 13px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .mod.featured {
+        grid-column: 1 / -1;
+        grid-template-columns: 34px minmax(0, 1fr);
+      }
+
+      .next-links {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 48px;
+        padding-top: 22px;
+        border-top: 1px solid var(--line);
+      }
+      .next-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 0;
+        background: transparent;
+        color: var(--green-strong);
+        cursor: pointer;
+        font-weight: 600;
+        padding: 10px 0;
+      }
+      .next-link:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+
+      @media (max-width: 780px) {
+        .site-nav { position: static; }
+        .nav-inner {
+          width: min(100% - 24px, var(--max));
+          min-height: auto;
+          display: block;
+          padding-top: 14px;
+        }
+        .server-status { padding: 0 4px 9px; }
+        .tablist {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .tab {
+          min-height: 54px;
+          padding: 11px 6px 9px;
+          font-size: 13px;
+          line-height: 1.25;
+        }
+        main { width: min(100% - 24px, var(--max)); padding: 38px 0 64px; }
+        .panel-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 30px; }
+        h1, h2 { font-size: clamp(44px, 14vw, 62px); }
+        .lede { font-size: 16px; }
+        .hamcraft-intro { margin-bottom: 42px; }
+        .intro-callouts { grid-template-columns: 1fr; }
+        .start-layout { grid-template-columns: 1fr; }
+        .pack-card { position: static; grid-row: 1; }
+        .step { grid-template-columns: 42px minmax(0, 1fr); gap: 13px; }
+        .step-number { width: 36px; height: 36px; }
+        .connect-card { grid-template-columns: 1fr; padding: 22px; }
+        .release-list { margin-left: 6px; padding-left: 28px; }
+        .release-list::before { left: 5px; }
+        .release { grid-template-columns: 1fr; gap: 12px; padding-bottom: 30px; }
+        .release::before { left: -29px; }
+        .release-copy { padding: 18px; }
+        .principles { grid-template-columns: 1fr; }
+        .mod-section-head { grid-template-columns: 1fr; gap: 8px; }
+        .mod-grid, .full-mod-grid { grid-template-columns: 1fr; }
+        .mod.featured { grid-column: auto; }
+      }
+
+      @media (max-width: 400px) {
+        body { font-size: 15px; }
+        .server-status { font-size: 11px; }
+        .tab { font-size: 12px; }
+        .pack-card { padding: 21px; }
+        .mod { padding: 17px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Guide sections">
+      <div class="nav-inner">
+        <div class="server-status" aria-label="Server status">
+          <span class="status-cube" aria-hidden="true"></span>
+          HAMCRAFT · v26.2.1
+        </div>
+        <div class="tablist" role="tablist" aria-label="Guide pages">
+          <button class="tab" id="tab-server" role="tab" aria-selected="true" aria-controls="server" data-panel="server">HamCraft</button>
+          <button class="tab" id="tab-start" role="tab" aria-selected="false" aria-controls="start" data-panel="start">Get started</button>
+          <button class="tab" id="tab-new" role="tab" aria-selected="false" aria-controls="new" data-panel="new">What’s new</button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="panel" id="start" role="tabpanel" aria-labelledby="tab-start" tabindex="-1" hidden>
+        <header class="panel-head is-single">
+          <div>
+            <h1>Get into HamCraft</h1>
+          </div>
+        </header>
+
+        <div class="start-layout">
+          <ol class="steps">
+            <li class="step">
+              <span class="step-number">01</span>
+              <div>
+                <h3>Download the pack</h3>
+                <p>Use the download button. Keep the <code>.mrpack</code> file somewhere easy to find—you’ll import it in step three.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-number">02</span>
+              <div>
+                <h3>Install Modrinth</h3>
+                <p>Get the <a href="https://modrinth.com/app" target="_blank" rel="noopener noreferrer">Modrinth App</a>, then sign in with the Microsoft account that owns Minecraft Java.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-number">03</span>
+              <div>
+                <h3>Import the pack</h3>
+                <p>In Modrinth, click the <strong>+ / Add</strong> button and choose <strong>From file</strong>. You can also drag the <code>.mrpack</code> onto the app window. Modrinth creates a Minecraft 26.2 + Fabric instance and downloads everything automatically.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-number">04</span>
+              <div>
+                <h3>Press Play</h3>
+                <p>Launch the new instance. If Modrinth complains about Java, point it at a Java 25 install, such as Adoptium Temurin 25.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="step-number">05</span>
+              <div>
+                <h3>Add the server</h3>
+                <p>In Minecraft, go to <strong>Multiplayer → Add Server</strong>. The address will be shared on Discord.</p>
+              </div>
+            </li>
+          </ol>
+
+          <aside class="pack-card" aria-label="HamCraft pack download">
+            <p class="pack-label">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+              Ready to import
+            </p>
+            <h3>HamCraft pack v26.2.1</h3>
+            <p>Exact versions of the client mods, Fabric, and Minecraft are bundled into one import.</p>
+            <a class="download-button" href="https://muse.ai/files/384242944780142/1064501466388360/eg8zd73rznbvendkew0yvq0c/hamcraft-26.2.1.mrpack" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+              Download HamCraft pack (.mrpack)
+            </a>
+            <p class="pack-note">The first two segments match Minecraft 26.2; the last increments when the pack’s mods change.</p>
+            <div class="expiry">Temporary download expires September 30, 2026.</div>
+          </aside>
+        </div>
+
+        <div class="next-links">
+          <button class="next-link" data-go="new">See what changed in Minecraft <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="panel" id="new" role="tabpanel" aria-labelledby="tab-new" tabindex="-1" hidden>
+        <header class="panel-head is-single">
+          <div>
+            <h2>What’s new in Minecraft</h2>
+          </div>
+        </header>
+
+        <ol class="release-list">
+          <li class="release">
+            <div class="release-name"><h3>26.2 “Chaos Cubed”</h3><span class="release-date">June 2026</span><br><span class="current-badge">HAMCRAFT VERSION</span></div>
+            <div class="release-copy"><ul><li>The <strong>Sulfur Cube</strong> absorbs blocks, then turns into a bouncy physical object you can punch around.</li><li>New Sulfur Caves biome, cinnabar and sulfur block sets, an in-game Friends List, and experimental Vulkan rendering support.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>26.1 “Tiny Takeover”</h3><span class="release-date">March 2026</span></div>
+            <div class="release-copy"><ul><li>Baby mobs were fully remodeled with unique looks and sounds; a <strong>Golden Dandelion</strong> keeps one small forever.</li><li>Name Tags are craftable, villager trades were rebalanced, and the lighting engine was overhauled.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>Mounts of Mayhem</h3><span class="release-date">Late 2025</span></div>
+            <div class="release-copy"><ul><li>The <strong>Nautilus</strong> is a rideable ocean mount that pauses your oxygen bar while you ride.</li><li>The <strong>Spear</strong> deals more damage with charge speed and can knock riders off their mounts.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>The Copper Age</h3><span class="release-date">Fall 2025</span></div>
+            <div class="release-copy"><ul><li>Build a <strong>Copper Golem</strong> to sort items from copper chests into nearby chests.</li><li>A full early-game copper gear tier sits between stone and iron, alongside copper chests, torches, bars, chains, lanterns, and the item-displaying Shelf.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>1.21.6 “Chase the Skies”</h3><span class="release-date">June 2025</span></div>
+            <div class="release-copy"><ul><li>The <strong>Happy Ghast</strong> is a rideable flying mount—craft a harness and bring friends.</li><li>Dried Ghast blocks rehydrate into Ghastlings; a locator bar shows which direction friends face; Vibrant Visuals overhauls graphics.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>1.21.5 “Spring to Life”</h3><span class="release-date">March 2025</span></div>
+            <div class="release-copy"><ul><li>Warm and cold variants give cows, pigs, and chickens new regional looks.</li><li>Leaf litter, wildflowers, firefly bushes, and refreshed ambient sounds make the overworld livelier.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>1.21.4 “The Garden Awakens”</h3><span class="release-date">December 2024</span></div>
+            <div class="release-copy"><ul><li>The <strong>Pale Garden</strong> is a grey, quiet forest with eyeblossom flowers and resin blocks.</li><li>The <strong>Creaking</strong> only moves when you’re not looking at it.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>1.21.2 “Bundles of Bravery”</h3><span class="release-date">October 2024</span></div>
+            <div class="release-copy"><ul><li><strong>Bundles</strong> finally ship: one inventory slot can hold a mix of item stacks.</li><li>Hardcore mode is available for everyone.</li></ul></div>
+          </li>
+          <li class="release">
+            <div class="release-name"><h3>1.21 “Tricky Trials”</h3><span class="release-date">2024</span></div>
+            <div class="release-copy"><ul><li><strong>Trial Chambers</strong> are underground combat dungeons with the Breeze mob.</li><li>The Mace rewards fall-attack smashes; trial spawners, vaults, and ominous trials offer better loot.</li></ul></div>
+          </li>
+        </ol>
+
+        <div class="next-links">
+          <button class="next-link" data-go="server">See what’s different in HamCraft <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section class="panel" id="server" role="tabpanel" aria-labelledby="tab-server" tabindex="-1">
+        <header class="panel-head is-single">
+          <div>
+            <h1>HamCraft</h1>
+          </div>
+        </header>
+
+        <section class="hamcraft-intro" aria-label="HamCraft guide introduction">
+          <p>HamCraft is a private Minecraft server with minimal modding. Our philosophy on mods is that they should smooth out rough edges vs changing the core gameplay.</p>
+          <div class="intro-callouts">
+            <div class="intro-card"><p>In order to join the server, head over to <button class="intro-link" data-go="start">Get started</button>.</p></div>
+            <div class="intro-card"><p>If you haven't played Minecraft in a while, check out <button class="intro-link" data-go="new">What's new</button>.</p></div>
+          </div>
+        </section>
+
+        <section class="mod-section" aria-labelledby="highlights-title">
+          <div class="mod-section-head">
+            <h3 id="highlights-title">Highlights</h3>
+          </div>
+          <div class="mod-grid">
+            <article class="mod"><span class="highlight-mark" aria-hidden="true">🪦</span><div><h4>Less-punishing death</h4><p>Dying drops a grave instead of scattering your items. You have 2 hours to get back to it.</p></div></article>
+            <article class="mod"><span class="highlight-mark" aria-hidden="true">🛏️</span><div><h4>Time / weather control</h4><p>You can already skip the night or a thunderstorm by sleeping, so we allow full control over time/weather from your bed.</p></div></article>
+            <article class="mod"><span class="highlight-mark" aria-hidden="true">🧪</span><div><h4>Potion stacking</h4><p>Potions of the same type can now stack so they're worth carrying around now. Lots of other items become stackable as well.</p></div></article>
+            <article class="mod featured"><span class="highlight-mark" aria-hidden="true">🛡️</span><div><h4>Anti-griefing</h4><p>Creepers, Ghast, and Wither explosions still hurt, but they won't destroy blocks. TNT and fire are still destructive!</p></div></article>
+            <article class="mod"><span class="highlight-mark" aria-hidden="true">🌙</span><div><h4>No insomnia</h4><p>Phantoms won't spawn due to lack of sleep. In exchange, phantoms now spawn every night but only if you're above Y=160.</p></div></article>
+            <article class="mod"><span class="highlight-mark" aria-hidden="true">🔨</span><div><h4>Simplified anvils</h4><p>Combine enchantments in any order without accidentally triggering “Too Expensive!”.</p></div></article>
+          </div>
+        </section>
+
+        <section class="full-mod-list" aria-labelledby="full-mod-list-title">
+          <h3 class="section-title" id="full-mod-list-title">Full mod list</h3>
+
+          <section class="full-mod-group" aria-labelledby="gameplay-mods-title">
+            <h4 class="mod-group-title" id="gameplay-mods-title">Gameplay</h4>
+            <div class="full-mod-grid">
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Universal Graves</h5><p>Dying leaves a grave with all your items instead of scattering them.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>SleepMenu</h5><p>Stand on a bed to set the time and weather.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mob Explosion Griefing</h5><p>Creeper, ghast, and wither explosions still hurt but can't destroy blocks.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Soaring Phantoms</h5><p>No insomnia phantoms; they only spawn above Y=160 at night.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Better Villager Trades</h5><p>Reroll a villager's trades from the trade screen; enchanted books and gear always roll max level.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Stack Size Plus</h5><p>Potions, buckets, empty shulker boxes and more stack.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trampleless</h5><p>Farmland can't be trampled.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA</h5><p>No “Too Expensive!” on anvils, Soul Speed and Thorns don't drain durability, farmers leave your wheat alone, villagers level up without reopening the trade screen, and new villagers roll minimum prices.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sessility</h5><p>AFK players show in the tab list and don't block the night skip.</p></div></article>
+            </div>
+          </section>
+
+          <section class="full-mod-group" aria-labelledby="interface-mods-title">
+            <h4 class="mod-group-title" id="interface-mods-title">Interfaces</h4>
+            <div class="full-mod-grid">
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's Minimap</h5><p>Minimap with waypoints and death markers.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Jade</h5><p>See what you're looking at, including mob health (trial).</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>AppleSkin</h5><p>Exact food and saturation values on the hunger bar.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Shulker Box Tooltip</h5><p>Hover a shulker box to preview what's inside.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>No Chat Reports</h5><p>Mojang chat reporting disabled on our private server.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Styled Chat</h5><p>Cleaner chat formatting.</p></div></article>
+            </div>
+          </section>
+
+          <section class="full-mod-group" aria-labelledby="performance-mods-title">
+            <h4 class="mod-group-title" id="performance-mods-title">Performance</h4>
+            <div class="full-mod-grid">
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sodium</h5><p>Big FPS boost.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Iris</h5><p>Optional shader support.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Lithium, FerriteCore, Krypton</h5><p>Server-side performance optimization.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Debugify</h5><p>Vanilla bug fixes.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>ImmediatelyFast</h5><p>Snappier menus and screens.</p></div></article>
+            </div>
+            <p class="required-libraries">Required libraries: Fabric API, Fabric Language Kotlin, Fzzy Config, and Polymer.</p>
+          </section>
+        </section>
+
+        <div class="next-links">
+          <button class="next-link" data-go="start">Back to setup <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+        var panels = Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
+        var ids = ['server', 'start', 'new'];
+
+        function activate(id, moveFocus) {
+          if (ids.indexOf(id) === -1) id = 'server';
+          tabs.forEach(function (tab) {
+            var active = tab.getAttribute('data-panel') === id;
+            tab.setAttribute('aria-selected', String(active));
+            tab.setAttribute('tabindex', active ? '0' : '-1');
+          });
+          panels.forEach(function (panel) {
+            panel.hidden = panel.id !== id;
+          });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', '#' + id);
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          if (moveFocus) document.getElementById(id).focus({ preventScroll: true });
+        }
+
+        tabs.forEach(function (tab, index) {
+          tab.addEventListener('click', function () { activate(tab.getAttribute('data-panel'), false); });
+          tab.addEventListener('keydown', function (event) {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+            event.preventDefault();
+            var next = event.key === 'ArrowRight' ? (index + 1) % tabs.length : (index - 1 + tabs.length) % tabs.length;
+            tabs[next].focus();
+            activate(tabs[next].getAttribute('data-panel'), false);
+          });
+        });
+
+        Array.prototype.slice.call(document.querySelectorAll('[data-go]')).forEach(function (button) {
+          button.addEventListener('click', function () { activate(button.getAttribute('data-go'), true); });
+        });
+
+        window.addEventListener('hashchange', function () { activate(window.location.hash.slice(1), false); });
+        activate(window.location.hash.slice(1), false);
+      }());
+    </script>
+  </body>
+</html>
