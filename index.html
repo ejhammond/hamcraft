@@ -605,45 +605,6 @@
         font-size: 12px;
         line-height: 1.5;
       }
-      .compat-legend {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px 20px;
-        margin: 10px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.7;
-      }
-      .compat-legend .compat-legend-title { color: var(--text); font-weight: 600; }
-      .compat-legend-item {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        white-space: nowrap;
-      }
-      .compat {
-        display: inline-grid;
-        place-items: center;
-        min-width: 22px;
-        height: 22px;
-        padding: 0 6px;
-        border-radius: 999px;
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 1;
-      }
-      .full-mod h5 .compat { margin-left: 9px; vertical-align: 3px; }
-      .compat-ready { background: var(--green-soft); color: var(--green-strong); }
-      .compat-partial { background: var(--amber-soft); color: var(--amber); }
-      .compat-no { background: var(--red-soft); color: var(--red); }
-      .compat-checked {
-        margin: 26px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-        font-style: italic;
-      }
       .mod.featured {
         grid-column: 1 / -1;
         grid-template-columns: 34px minmax(0, 1fr);
@@ -936,54 +897,47 @@
 
         <section class="full-mod-list" aria-labelledby="full-mod-list-title">
           <h3 class="section-title" id="full-mod-list-title">Full mod list</h3>
-          <p class="compat-legend">
-            <span class="compat-legend-title">26.3 compatibility:</span>
-            <span class="compat-legend-item"><span class="compat compat-ready">✓</span> Ready — 26.3 build published</span>
-            <span class="compat-legend-item"><span class="compat compat-no">✗</span> Not yet — no 26.3 build</span>
-            <span class="compat-legend-item"><span class="compat compat-partial">~</span> Partial — alpha or unconfirmed</span>
-          </p>
 
           <section class="full-mod-group" aria-labelledby="gameplay-mods-title">
             <h4 class="mod-group-title" id="gameplay-mods-title">Gameplay</h4>
             <div class="full-mod-grid">
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Universal Graves<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Dying leaves a grave with all your items instead of scattering them.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>SleepMenu<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Stand on a bed to set the time and weather.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mob Explosion Griefing<span class="compat compat-no" title="26.3: not yet">✗</span></h5><p>Creeper, ghast, and wither explosions still hurt but can't destroy blocks.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Soaring Phantoms<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>No insomnia phantoms; they only spawn above Y=160 at night.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Better Villager Trades<span class="compat compat-partial" title="26.3: partial">~</span></h5><p>Reroll a villager's trades from the trade screen; enchanted books and gear always roll max level.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Potion Stacking<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Potions of the same type stack (up to 16, configurable); empty shulker boxes stack too.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trampleless<span class="compat compat-no" title="26.3: not yet">✗</span></h5><p>Farmland can't be trampled.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>No “Too Expensive!” on anvils, Soul Speed and Thorns don't drain durability, farmers leave your wheat alone, villagers level up without reopening the trade screen, and new villagers roll minimum prices.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sessility<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>AFK players show in the tab list and don't block the night skip.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Universal Graves</h5><p>Dying leaves a grave with all your items instead of scattering them.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>SleepMenu</h5><p>Stand on a bed to set the time and weather.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mob Explosion Griefing</h5><p>Creeper, ghast, and wither explosions still hurt but can't destroy blocks.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Soaring Phantoms</h5><p>No insomnia phantoms; they only spawn above Y=160 at night.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Better Villager Trades</h5><p>Reroll a villager's trades from the trade screen; enchanted books and gear always roll max level.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Potion Stacking</h5><p>Potions of the same type stack (up to 16, configurable); empty shulker boxes stack too.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trampleless</h5><p>Farmland can't be trampled.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA</h5><p>No “Too Expensive!” on anvils, Soul Speed and Thorns don't drain durability, farmers leave your wheat alone, villagers level up without reopening the trade screen, and new villagers roll minimum prices.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sessility</h5><p>AFK players show in the tab list and don't block the night skip.</p></div></article>
             </div>
           </section>
 
           <section class="full-mod-group" aria-labelledby="interface-mods-title">
             <h4 class="mod-group-title" id="interface-mods-title">Interfaces</h4>
             <div class="full-mod-grid">
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's Minimap<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Minimap with waypoints and death markers.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's World Map<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Full-screen world map; pairs with Xaero's Minimap waypoints (client-side only).</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Jade<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>See what you're looking at, including mob health (trial).</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>AppleSkin<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Exact food and saturation values on the hunger bar.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Shulker Box Tooltip<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Hover a shulker box to preview what's inside.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>No Chat Reports<span class="compat compat-no" title="26.3: not yet">✗</span></h5><p>Mojang chat reporting disabled on our private server.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Styled Chat<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Cleaner chat formatting.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's Minimap</h5><p>Minimap with waypoints and death markers.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's World Map</h5><p>Full-screen world map; pairs with Xaero's Minimap waypoints (client-side only).</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Jade</h5><p>See what you're looking at, including mob health (trial).</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>AppleSkin</h5><p>Exact food and saturation values on the hunger bar.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Shulker Box Tooltip</h5><p>Hover a shulker box to preview what's inside.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>No Chat Reports</h5><p>Mojang chat reporting disabled on our private server.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Styled Chat</h5><p>Cleaner chat formatting.</p></div></article>
             </div>
           </section>
 
           <section class="full-mod-group" aria-labelledby="performance-mods-title">
             <h4 class="mod-group-title" id="performance-mods-title">Performance</h4>
             <div class="full-mod-grid">
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sodium<span class="compat compat-partial" title="26.3: partial">~</span></h5><p>Big FPS boost.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Iris<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Optional shader support.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Lithium, FerriteCore, Krypton<span class="compat compat-partial" title="26.3: partial">~</span></h5><p>Server-side performance optimization.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Debugify<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Vanilla bug fixes.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>ImmediatelyFast<span class="compat compat-ready" title="26.3: ready">✓</span></h5><p>Snappier menus and screens.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sodium</h5><p>Big FPS boost.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Iris</h5><p>Optional shader support.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Lithium, FerriteCore, Krypton</h5><p>Server-side performance optimization.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Debugify</h5><p>Vanilla bug fixes.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>ImmediatelyFast</h5><p>Snappier menus and screens.</p></div></article>
             </div>
-            <p class="required-libraries">Required libraries: Fabric API, Fabric Language Kotlin, Fzzy Config, Polymer, and Cloth Config <span class="compat compat-ready" title="26.3: ready">✓</span>.</p>
+            <p class="required-libraries">Required libraries: Fabric API, Fabric Language Kotlin, Fzzy Config, Polymer, and Cloth Config.</p>
           </section>
 
-          <p class="compat-checked">26.3 compatibility last checked September 29, 2026.</p>
         </section>
 
         <div class="next-links">
