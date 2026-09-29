@@ -1,0 +1,9 @@
+# HamCraft server runtime files — never commit these.
+# (The world needs real backups, not git.)
+server/world/
+server/logs/
+server/cache/
+server/*.log
+server/usercache.json
+server/session.lock
+server/*.pid

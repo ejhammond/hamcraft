@@ -1,0 +1,22 @@
+{
+  // Minimum ticks between successful Sleep Menu actions for the same player.
+  // 20 ticks = 1 second, so the default 400 ticks equals 20 seconds.
+  "cooldownTicks": 400,
+
+  // Global anti-spam window for successful changes.
+  // Default 12000 ticks = 10 minutes. Set to 0 to disable the anti-spam window.
+  "antiSpamWindowTicks": 12000,
+
+  // Maximum successful time changes allowed for all players together within the anti-spam window.
+  // Set to 0 to disable the time anti-spam limit.
+  "timeChangeLimit": 4,
+
+  // Maximum successful weather changes allowed for all players together within the anti-spam window.
+  // Set to 0 to disable the weather anti-spam limit.
+  "weatherChangeLimit": 4,
+
+  // Fallback access mode when LuckPerms is not installed on the server.
+  // Use EVERYONE to allow all players, or OP_ONLY to restrict access to operators.
+  "noLuckPermsAccess": "EVERYONE"
+
+}
