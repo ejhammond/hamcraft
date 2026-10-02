@@ -100,11 +100,21 @@
         font-size: 12px;
         white-space: nowrap;
       }
-      .status-cube {
-        width: 14px;
-        height: 14px;
-        background: var(--green);
-        box-shadow: inset -3px -3px 0 rgba(0,0,0,.18), inset 3px 3px 0 rgba(255,255,255,.13);
+      .status-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        display: block;
+      }
+      .title-with-hammy {
+        display: flex;
+        align-items: flex-end;
+        gap: 18px;
+      }
+      .title-hammy {
+        height: 76px;
+        width: auto;
+        display: block;
       }
       .tablist { display: flex; align-items: center; gap: 4px; }
       .tab {
@@ -576,6 +586,15 @@
         font-size: 20px;
         line-height: 1;
       }
+      .mod-grid .mod { grid-template-columns: 132px minmax(0, 1fr); align-items: center; }
+      .highlight-img {
+        width: 132px;
+        height: 88px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        object-fit: cover;
+        display: block;
+      }
       .mod h4, .mod h5 {
         margin: 0 0 6px;
         font-family: "Barlow Condensed", sans-serif;
@@ -692,8 +711,8 @@
     <nav class="site-nav" aria-label="Guide sections">
       <div class="nav-inner">
         <div class="server-status" aria-label="Server status">
-          <span class="status-cube" aria-hidden="true"></span>
-          HAMCRAFT · v26.2.4
+          <img class="status-icon" src="assets/hammy/hammy-icon.webp" alt="" aria-hidden="true">
+          HAMCRAFT · v26.2.5
         </div>
         <div class="tablist" role="tablist" aria-label="Guide pages">
           <button class="tab" id="tab-server" role="tab" aria-selected="true" aria-controls="server" data-panel="server">HamCraft</button>
@@ -761,8 +780,8 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               Ready to import
             </p>
-            <h3>HamCraft pack v26.2.4</h3>
-            <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.4/hamcraft-26.2.4.mrpack" target="_blank" rel="noopener noreferrer">
+            <h3>HamCraft pack v26.2.5</h3>
+            <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.5/hamcraft-26.2.5.mrpack" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               Download HamCraft pack (.mrpack)
             </a>
@@ -790,8 +809,8 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
                 Latest version
               </p>
-              <h3>HamCraft pack v26.2.4</h3>
-              <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.4/hamcraft-26.2.4.mrpack" target="_blank" rel="noopener noreferrer">
+              <h3>HamCraft pack v26.2.5</h3>
+              <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.5/hamcraft-26.2.5.mrpack" target="_blank" rel="noopener noreferrer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
                 Download HamCraft pack (.mrpack)
               </a>
@@ -857,8 +876,9 @@
 
       <section class="panel" id="server" role="tabpanel" aria-labelledby="tab-server" tabindex="-1">
         <header class="panel-head is-single">
-          <div>
+          <div class="title-with-hammy">
             <h1>HamCraft</h1>
+            <img class="title-hammy" src="assets/hammy/hammy-title.webp" alt="Hammy the pig leaning on a pickaxe">
           </div>
         </header>
 
@@ -887,12 +907,11 @@
             <h3 id="highlights-title">Highlights</h3>
           </div>
           <div class="mod-grid">
-            <article class="mod"><span class="highlight-mark" aria-hidden="true">🪦</span><div><h4>Less-punishing death</h4><p>Dying drops a grave instead of scattering your items. You have 2 hours to get back to it.</p></div></article>
-            <article class="mod"><span class="highlight-mark" aria-hidden="true">🛏️</span><div><h4>Time / weather control</h4><p>Stand on a bed to set the time or clear a thunderstorm — no need to actually sleep.</p></div></article>
-            <article class="mod"><span class="highlight-mark" aria-hidden="true">🧪</span><div><h4>Potion stacking</h4><p>Potions of the same type stack, so they're finally worth carrying. Empty shulker boxes stack too.</p></div></article>
-            <article class="mod featured"><span class="highlight-mark" aria-hidden="true">🛡️</span><div><h4>Anti-griefing</h4><p>Creeper, Ghast, and Wither explosions still hurt, but they won't destroy blocks. TNT and fire are still destructive!</p></div></article>
-            <article class="mod"><span class="highlight-mark" aria-hidden="true">🌙</span><div><h4>No insomnia</h4><p>Phantoms won't spawn due to lack of sleep. Instead, they spawn every night — but only above Y=160.</p></div></article>
-            <article class="mod"><span class="highlight-mark" aria-hidden="true">🔨</span><div><h4>Simplified anvils</h4><p>Combine enchantments in any order without accidentally triggering “Too Expensive!”.</p></div></article>
+            <article class="mod"><img class="highlight-img" src="assets/hammy/highlight-grave.webp" alt="Hammy the pig giving a thumbs-up next to a gravestone"><div><h4>Less-punishing death</h4><p>Dying drops a grave instead of scattering your items. You have 2 hours to get back to it.</p></div></article>
+            <article class="mod"><img class="highlight-img" src="assets/hammy/highlight-bed.webp" alt="Hammy the pig standing triumphantly on a bed"><div><h4>Time / weather control</h4><p>Stand on a bed to set the time or clear a thunderstorm — no need to actually sleep.</p></div></article>
+            <article class="mod"><img class="highlight-img" src="assets/hammy/highlight-potions.webp" alt="Hammy the pig holding a stack of potions"><div><h4>Potion stacking</h4><p>Potions of the same type stack, so they're finally worth carrying. Empty shulker boxes stack too.</p></div></article>
+            <article class="mod"><img class="highlight-img" src="assets/hammy/highlight-antigrief.webp" alt="Hammy the pig relaxing with a friendly creeper inside his cozy house"><div><h4>Respectful explosions</h4><p>Creeper, Ghast, and Wither explosions still hurt, but they won't destroy blocks. TNT and fire are still destructive!</p></div></article>
+            <article class="mod"><img class="highlight-img" src="assets/hammy/highlight-phantoms.webp" alt="Hammy the pig standing triumphantly on a defeated phantom"><div><h4>No insomnia</h4><p>Phantoms won't spawn due to lack of sleep. Instead, they spawn every night — but only above Y=160.</p></div></article>
           </div>
         </section>
 
@@ -906,8 +925,11 @@
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>SleepMenu</h5><p>Stand on a bed to set the time and weather.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mob Explosion Griefing</h5><p>Creeper, Ghast, and Wither explosions still hurt but can't destroy blocks.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Soaring Phantoms</h5><p>No insomnia phantoms; they only spawn above Y=160 at night.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Better Villager Trades</h5><p>Reroll a villager's trades from the trade screen; enchanted books and gear always roll max level.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trade Cycling</h5><p>Reroll a villager's trades right from the trade screen — no more breaking workstations.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Visible Traders</h5><p>See a villager's locked trade tiers in the trade GUI before leveling them up.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Potion Stacking</h5><p>Potions of the same type stack (up to 16); empty shulker boxes stack too.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Easy Shulker Boxes</h5><p>Use shulker boxes and ender chests right from your inventory, with a content preview on hover.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Elytra Slot</h5><p>Dedicated elytra slot — wear a chestplate and elytra at the same time.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trampleless</h5><p>Farmland can't be trampled.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA</h5><p>No “Too Expensive!” on anvils. Soul Speed and Thorns don't drain durability, farmers won't trample your wheat, villagers level up without reopening trades, and new villagers roll minimum prices.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sessility</h5><p>AFK players show in the tab list and don't block the night skip.</p></div></article>
@@ -919,9 +941,12 @@
             <div class="full-mod-grid">
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's Minimap</h5><p>Minimap with waypoints and death markers.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Xaero's World Map</h5><p>Full-screen world map; pairs with Xaero's Minimap waypoints (client-side only).</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Jade</h5><p>See what you're looking at, including mob health.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>MobHealthBar</h5><p>Mob health bars that appear in combat.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>AppleSkin</h5><p>Exact food and saturation values on the hunger bar.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Shulker Box Tooltip</h5><p>Hover a shulker box to preview what's inside.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mouse Tweaks</h5><p>RMB-drag crafting and scroll-wheel item moving.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Status Effect Bars</h5><p>Active effect timers as tidy bars above the hotbar.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Client Sort</h5><p>Middle-click to sort inventories.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mod Menu</h5><p>In-game mod list and config screens.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>No Chat Reports</h5><p>Mojang chat reporting disabled on our private server.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Styled Chat</h5><p>Cleaner chat formatting.</p></div></article>
             </div>
@@ -936,7 +961,7 @@
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Debugify</h5><p>Vanilla bug fixes.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>ImmediatelyFast</h5><p>Snappier menus and screens.</p></div></article>
             </div>
-            <p class="required-libraries">Required libraries: Fabric API, Fabric Language Kotlin, Fzzy Config, Polymer, and Cloth Config.</p>
+            <p class="required-libraries">Required libraries: Fabric API, Cloth Config, Puzzles Lib, and Forge Config API Port.</p>
           </section>
 
         </section>
