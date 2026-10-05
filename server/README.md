@@ -18,9 +18,18 @@ way on any machine.
   - `universal-graves/config.json` — grave expiry (2 hours).
   - `potionstacking.json` — potion stack size (16).
   - `sessility.properties`, `sleepmenu.json` — AFK handling, sleep-menu limits.
+  - `veinminer/` — VeinMiner tree-chopping (v26.2.7): `settings.json` (speed 1.0 =
+    manual pace, hunger 0.005/block = vanilla, searchRadius 5, maxChain 200),
+    `groups.json` (logs-only group, explicit block IDs — the client can't parse
+    `#tag` syntax). **Note:** must be a JSON array, not a single object, and
+    UTF-8 without BOM or the mod silently falls back to defaults.
 - `ops.json` — server operators.
 - `scripts/supervisor.ps1` — headless server supervisor for the Windows trial box
   (holds stdin open so the server survives SSH disconnect).
+- `scripts/apply-server-settings.ps1` — applies all gamerules (vanilla + mod)
+  and Carpet rules from PACK_MANIFEST.md. Run once per fresh world — gamerules
+  live in level.dat and Carpet rules in world/carpet.conf, neither of which
+  survives a world wipe.
 
 ## Not tracked
 
