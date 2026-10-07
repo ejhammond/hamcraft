@@ -10,6 +10,9 @@ way on any machine.
 - `server.properties` — core server knobs (MOTD, difficulty, view distance…).
   Management-server secret lines are intentionally stripped; the management
   server is disabled.
+  **Note:** `enforce-secure-profile=false` is deliberate — the client pack ships
+  NoChatReports, which withholds the profile public key by design, so requiring
+  signed chat would warn every player every session.
 - `config/` — config files for mods whose behavior we deliberately changed:
   - `carpet.conf` — Carpet rules (shulker stacking, anvil tweaks, villager prices…).
     **Note:** Carpet reads this from inside the world folder (`world/carpet.conf`);
