@@ -315,7 +315,7 @@
     "hours_suffix": "h",
     "minutes_suffix": "m",
     "seconds_suffix": "s",
-    "infinity": "âˆž",
+    "infinity": "∞",
     "date_format": "dd.MM.yyyy, HH:mm",
     "world_names": {}
   }
