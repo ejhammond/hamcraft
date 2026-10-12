@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180" />
+    <meta property="og:title" content="HamCraft Releases" />
+    <meta property="og:description" content="Every HamCraft pack release — what changed, and downloads for current and older versions." />
+    <meta property="og:image" content="https://ejhammond.github.io/hamcraft/assets/hammy/og-image.webp" />
+    <meta property="og:url" content="https://ejhammond.github.io/hamcraft/releases.html" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>HamCraft Releases</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f2f5f0;
+        --surface: #ffffff;
+        --surface-2: #e7ede5;
+        --text: #172019;
+        --muted: #4f5d52;
+        --line: #c5d1c2;
+        --green: #267742;
+        --green-strong: #175f32;
+        --green-soft: #d7efdc;
+        --shadow: 0 16px 40px rgba(27, 48, 31, 0.10);
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --max: 1160px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d120f;
+          --surface: #151c17;
+          --surface-2: #1c251e;
+          --text: #eef5ee;
+          --muted: #b2c0b3;
+          --line: #334137;
+          --green: #64c77f;
+          --green-strong: #83e09a;
+          --green-soft: #173b22;
+          --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(rgba(80, 121, 88, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(80, 121, 88, 0.045) 1px, transparent 1px),
+          var(--bg);
+        background-size: 32px 32px;
+        color: var(--text);
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+      a { color: var(--green-strong); }
+      a:hover { text-decoration-thickness: 2px; }
+      :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+      h1, h2, h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        line-height: .98;
+        margin: 0;
+      }
+      h1, h2 {
+        max-width: 720px;
+        font-size: clamp(46px, 7vw, 76px);
+        letter-spacing: -.02em;
+      }
+      h3 { font-size: 28px; }
+
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--bg) 94%, transparent);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+      .nav-inner {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+      .server-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .status-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        display: block;
+      }
+      .back-link {
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .back-link:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+
+      main {
+        width: min(var(--max), calc(100% - 32px));
+        margin: 0 auto;
+        padding: 58px 0 80px;
+      }
+      .page-head { margin-bottom: 38px; }
+      .page-head p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        max-width: 640px;
+      }
+
+      .release-list {
+        position: relative;
+        margin: 10px 0 0 14px;
+        padding: 0 0 0 38px;
+        list-style: none;
+      }
+      .release-list::before {
+        content: "";
+        position: absolute;
+        inset: 12px auto 16px 6px;
+        width: 2px;
+        background: var(--line);
+      }
+      .release {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr);
+        gap: 26px;
+        padding: 0 0 34px;
+      }
+      .release::before {
+        content: "";
+        position: absolute;
+        left: -38px;
+        top: 8px;
+        width: 14px;
+        height: 14px;
+        background: var(--bg);
+        border: 4px solid var(--green);
+        box-shadow: 0 0 0 5px var(--bg);
+      }
+      .release-name h3 { margin-bottom: 7px; }
+      .release-date {
+        color: var(--green-strong);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .release-copy {
+        padding: 22px 24px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 6px var(--radius-md) var(--radius-md) var(--radius-md);
+      }
+      .release-copy ul {
+        margin: 0;
+        padding-left: 20px;
+      }
+      .release-copy li + li { margin-top: 8px; }
+      .release-copy li::marker { color: var(--green); }
+      .current-badge {
+        display: inline-block;
+        margin-top: 11px;
+        padding: 4px 8px;
+        background: var(--green-soft);
+        color: var(--green-strong);
+        border-radius: 4px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .release-downloads {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+      .dl-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        background: var(--surface-2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--green-strong);
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+      }
+      .dl-link:hover { filter: brightness(1.04); text-decoration: none; }
+      .dl-link svg { flex: 0 0 auto; }
+
+      @media (max-width: 760px) {
+        .release-list { margin-left: 6px; padding-left: 28px; }
+        .release-list::before { left: 5px; }
+        .release { grid-template-columns: 1fr; gap: 12px; padding-bottom: 30px; }
+        .release::before { left: -29px; }
+        .release-copy { padding: 18px; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <div class="server-status">
+          <img class="status-icon" src="assets/hammy/hammy-icon.webp" alt="" aria-hidden="true">
+          HAMCRAFT · RELEASES
+        </div>
+        <a class="back-link" href="index.html#start">← Back to Download</a>
+      </div>
+    </nav>
+
+    <main>
+      <header class="page-head">
+        <h1>Releases</h1>
+        <p>What changed in each version of the HamCraft pack. Most players just want the latest version from the Download tab — older versions are here if you ever need to roll back.</p>
+      </header>
+
+      <ol class="release-list">
+        <li class="release">
+          <div class="release-name">
+            <h3>v26.2.8</h3>
+            <span class="release-date">OCTOBER 12, 2026</span>
+            <span class="current-badge">CURRENT RELEASE</span>
+          </div>
+          <div class="release-copy">
+            <ul>
+              <li>Your inventory has a trash slot now — drop in items you don't want to delete them.</li>
+              <li>Deleted the wrong thing? The last item you trashed stays in the slot, so you can take it back out.</li>
+              <li>Drag the slot wherever you like, or press Delete to trash the item under your cursor.</li>
+            </ul>
+            <div class="release-downloads">
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.8/hamcraft-26.2.8.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Client pack (.mrpack)
+              </a>
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.8/hamcraft-26.2.8-server.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Server pack (.mrpack)
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <li class="release">
+          <div class="release-name">
+            <h3>v26.2.7</h3>
+            <span class="release-date">OCTOBER 5, 2026</span>
+          </div>
+          <div class="release-copy">
+            <ul>
+              <li>Chop down whole trees at once — put the VeinMiner enchantment on an axe and hold the VeinMiner hotkey.</li>
+              <li>Mine spawners with a Silk Touch pickaxe and place them back with the mob type intact.</li>
+              <li>Your hotbar refills itself from your inventory when a stack runs out.</li>
+              <li>Tools stop working at 1 durability instead of breaking — you'll get a warning before they give out.</li>
+              <li>Bundles are easier to use: click items in and out, with a preview on hover.</li>
+              <li>New villagers roll their best enchanted book prices.</li>
+              <li>Shaders are bundled — press I in-game to turn on Complementary Reimagined.</li>
+            </ul>
+            <div class="release-downloads">
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.7/hamcraft-26.2.7.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Client pack (.mrpack)
+              </a>
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.7/hamcraft-26.2.7-server.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Server pack (.mrpack)
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <li class="release">
+          <div class="release-name">
+            <h3>v26.2.6</h3>
+            <span class="release-date">OCTOBER 4, 2026</span>
+          </div>
+          <div class="release-copy">
+            <ul>
+              <li>The first HamCraft release: graves keep your items safe when you die, potions stack, creeper explosions don't wreck your builds, and a minimap helps you find your way back.</li>
+              <li>Villagers can be leashed with a lead — moving them around no longer needs boats and minecarts.</li>
+            </ul>
+            <div class="release-downloads">
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.6/hamcraft-26.2.6.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Client pack (.mrpack)
+              </a>
+              <a class="dl-link" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.6/hamcraft-26.2.6-server.mrpack">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+                Server pack (.mrpack)
+              </a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </main>
+  </body>
+</html>

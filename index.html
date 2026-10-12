@@ -348,6 +348,20 @@
         font-size: 13px;
         line-height: 1.45;
       }
+      .whats-new {
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .whats-new ul {
+        margin: 0 0 14px;
+        padding-left: 18px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .whats-new li + li { margin-top: 6px; }
+      .whats-new li::marker { color: var(--green); }
+      .older-releases-link { font-weight: 600; }
       .expiry {
         margin-top: 16px;
         padding: 12px 14px;
@@ -773,6 +787,15 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               Download pack (.mrpack)
             </a>
+            <div class="whats-new">
+              <p class="pack-label">What's new in v26.2.8</p>
+              <ul>
+                <li>Your inventory has a trash slot now — drop in items you don't want to delete them.</li>
+                <li>Deleted the wrong thing? The last item you trashed stays in the slot, so you can take it back out.</li>
+                <li>Drag the slot wherever you like, or press Delete to trash the item under your cursor.</li>
+              </ul>
+              <a class="older-releases-link" href="releases.html">View older releases <span aria-hidden="true">→</span></a>
+            </div>
           </aside>
           </div>
         </section>
@@ -886,7 +909,6 @@
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>VeinMiner</h5><p>Hold the VeinMiner hotkey with an enchanted axe to chop an entire tree at once. Progression-gated by the VeinMiner enchantment.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Auto Refill Slot</h5><p>Your hotbar automatically refills from your inventory when a stack runs out.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Anti Item Break</h5><p>Tools stop working at 1 durability instead of breaking.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Silkier Touch</h5><p>Mine spawners with a Silk Touch pickaxe and place them back with the mob type intact.</p></div></article>
             </div>
           </section>
 
