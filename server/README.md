@@ -26,6 +26,11 @@ way on any machine.
     `groups.json` (logs-only group, explicit block IDs — the client can't parse
     `#tag` syntax). **Note:** must be a JSON array, not a single object, and
     UTF-8 without BOM or the mod silently falls back to defaults.
+  - `serilum/` — Infinite Trading + its Collective library (added 2026-10-18,
+    server-only, no version bump): `infinitetrading.json` (villager and
+    wandering-trader trades never lock; demand price hikes removed),
+    `collective.json`. Both files are the mod-generated defaults, pinned here
+    so a rebuild reproduces today's behavior even if upstream defaults change.
 - `ops.json` — server operators.
 - `scripts/` — helper scripts (e.g. supervisor for the Windows trial box).
 
