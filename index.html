@@ -712,7 +712,7 @@
       <div class="nav-inner">
         <div class="server-status" aria-label="Server status">
           <img class="status-icon" src="assets/hammy/hammy-icon.webp" alt="" aria-hidden="true">
-          HAMCRAFT · v26.2.8
+          HAMCRAFT · v26.3.0
         </div>
         <div class="tablist" role="tablist" aria-label="Guide pages">
           <button class="tab" id="tab-server" role="tab" aria-selected="true" aria-controls="server" data-panel="server">HamCraft</button>
@@ -782,20 +782,21 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               Ready to import
             </p>
-            <h3>HamCraft pack v26.2.8</h3>
-            <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.2.8/hamcraft-26.2.8.mrpack" target="_blank" rel="noopener noreferrer">
+            <h3>HamCraft pack v26.3.0</h3>
+            <a class="download-button" href="https://github.com/ejhammond/hamcraft/releases/download/v26.3.0/hamcraft-26.3.0.mrpack" target="_blank" rel="noopener noreferrer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               Download pack (.mrpack)
             </a>
             <div class="whats-new">
-              <p class="pack-label">What's new in v26.2.8</p>
+              <p class="pack-label">What's new in v26.3.0</p>
               <ul>
-                <li>Added a trash slot to your inventory to dispose of unwanted items.</li>
-                <li>Removed Silk Touch spawner pickup — spawners can't be mined and relocated anymore.</li>
-                <li>Added a free camera — press F8 to detach your camera and fly around to admire your builds.</li>
-                <li>Added the Copper Hopper — a hopper made of copper that filters items, so you can build compact sorters without a giant redstone setup.</li>
-                <li>Added Respackopts — Redstone Tweaks now has a settings screen (from the Resource Packs list), so you can fine-tune it or turn off the container signal panels.</li>
-                <li>Bundled two optional resource packs (off by default — turn them on in Options → Resource Packs): a jewel on enchanted tools tells Fortune from Silk Touch at a glance, and Redstone Tweaks makes redstone components easier to read.</li>
+                <li><strong>Minecraft 26.3</strong> — the pack and server are updated to the latest version.</li>
+                <li><strong>Before you update:</strong> if you keep an elytra in the Elytra Slot, move it into your normal inventory first — the slot is going away, and anything left in it will be lost.</li>
+                <li>Elytra Slot is replaced by <strong>Armored Elytra</strong>: combine an elytra and a chestplate on an anvil to wear both as one piece; split them back at a grindstone.</li>
+                <li><strong>Stack Refill</strong> replaces Auto Refill — your hotbar still refills from your inventory automatically.</li>
+                <li><strong>Durability Notifier</strong> replaces Anti Item Break: tools no longer stop at 1 durability — you get a ping and an on-screen warning below 10% instead.</li>
+                <li>MobHealthBar lives on — we ported it to 26.3, so your hearts bar is unchanged.</li>
+                <li>Removed No Chat Reports and Krypton.</li>
               </ul>
               <a class="older-releases-link" href="releases.html">View older releases <span aria-hidden="true">→</span></a>
             </div>
@@ -808,6 +809,7 @@
             <p class="eyebrow">Already installed?</p>
             <h3 id="update-title">Upgrade your existing instance</h3>
             <p>Download the newest <code>.mrpack</code> using the button above, then apply it to the HamCraft instance you already use. Your worlds, keybinds, and settings are kept.</p>
+            <p><strong>One exception this time:</strong> move your elytra out of the Elytra Slot into your normal inventory <em>before</em> updating — see the warning above.</p>
           </div>
           <ol class="update-steps">
             <li><span class="update-step-number">1</span><p>Open your <strong>HamCraft instance</strong> in Modrinth and go to the <strong>Content</strong> tab.</p></li>
@@ -845,8 +847,8 @@
           <article class="mod"><div><h4>Move villagers</h4><p><strong>Right-click a villager with a lead</strong> to leash them. No more boats, minecarts, or pushing them through doorways.</p></div></article>
           <article class="mod"><div><h4>Reroll trades</h4><p>Open a villager's trade screen and click the <strong>cycling button</strong> to reroll their trades. No need to break and replace the workstation — but only works before you've traded with them.</p></div></article>
           <article class="mod"><div><h4>Shulkers as backpacks</h4><p><strong>Click an item onto a shulker</strong> in your inventory to store it, or <strong>click the shulker onto an item</strong> to pull things out. Hold <strong>Shift</strong> while hovering to peek inside. <strong>Scroll</strong> to pick a specific slot, <strong>Ctrl</strong> for single-item precision. Works on ender chests and bundles too.</p></div></article>
-          <article class="mod"><div><h4>Hotbar refills itself</h4><p>When a hotbar stack runs out, <strong>Auto Refill</strong> pulls a matching stack from your inventory automatically. No more mid-fight inventory shuffling.</p></div></article>
-          <article class="mod"><div><h4>Tools don't snap</h4><p><strong>Anti Item Break</strong> stops your tools at 1 durability instead of breaking them. You'll see a warning — go repair it.</p></div></article>
+          <article class="mod"><div><h4>Hotbar refills itself</h4><p>When a hotbar stack runs out, <strong>Stack Refill</strong> pulls a matching stack from your inventory automatically. No more mid-fight inventory shuffling.</p></div></article>
+          <article class="mod"><div><h4>Tools warn you first</h4><p><strong>Durability Notifier</strong> pings you with an on-screen warning when a tool drops below 10% durability. Go repair it before it breaks.</p></div></article>
           <article class="mod"><div><h4>Grab your grave</h4><p>Dying drops a grave with all your items. <strong>Shift-click it</strong> to scoop everything up at once. You have 2 hours before it despawns.</p></div></article>
           <article class="mod"><div><h4>Free camera</h4><p>Press <strong>F8</strong> to detach your camera and fly around — perfect for checking on a build from the outside. Your character stays where you left them; press F8 again to snap back.</p></div></article>
         </div>
@@ -909,14 +911,15 @@
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Easy Shulker Boxes</h5><p>Use shulker boxes and ender chests right from your inventory, with a content preview on hover.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Bundle Upgrade</h5><p>Bundles get the same inventory interactions as shulker boxes — click items in and out, preview on hover.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Copper Hopper</h5><p>A hopper that filters — it only accepts item types you place in it, and always keeps the last one. Compact sorting without redstone.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Elytra Slot</h5><p>Dedicated elytra slot — wear a chestplate and elytra at the same time.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Trampleless</h5><p>Farmland can't be trampled.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA</h5><p>No “Too Expensive!” on anvils. Soul Speed and Thorns don't drain durability, farmers won't trample your wheat, villagers level up without reopening trades, and new villagers roll minimum prices.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Armored Elytra</h5><p>Combine an elytra and a chestplate on an anvil to wear both as one piece — split them back at a grindstone.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>NoCropTrample</h5><p>Farmland can't be trampled — by players or mobs.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Carpet FGA</h5><p>No “Too Expensive!” on anvils. Soul Speed and Thorns don't drain durability, farmers won't trample your wheat, villagers level up without reopening trades.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>HamTweaks</h5><p>New villagers always roll the minimum enchanted-book price. Our own little server mod.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sessility</h5><p>AFK players show in the tab list and don't block the night skip.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Leash Villager</h5><p>Right-click a villager with a lead to leash them. No more boat/minecart wrangling.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>VeinMiner</h5><p>Chop an entire tree at once with an enchanted axe — set up your VeinMiner hotkey in the keybinds menu. Progression-gated by the VeinMiner enchantment.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Auto Refill Slot</h5><p>Your hotbar automatically refills from your inventory when a stack runs out.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Anti Item Break</h5><p>Tools stop working at 1 durability instead of breaking.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Stack Refill</h5><p>Your hotbar automatically refills from your inventory when a stack runs out.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Durability Notifier</h5><p>Pings and shows an on-screen warning when a tool drops below 10% durability.</p></div></article>
             </div>
           </section>
 
@@ -932,7 +935,6 @@
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Client Sort</h5><p>Middle-click to sort inventories.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Mod Menu</h5><p>In-game mod list and config screens.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Respackopts</h5><p>Settings screens for resource packs — unlocks Redstone Tweaks' options, like turning off the container signal panels.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>No Chat Reports</h5><p>Mojang chat reporting disabled on our private server.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Styled Chat</h5><p>Cleaner chat formatting.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>TrashSlot</h5><p>Trash slot in inventory screens to delete unwanted items — fish the last one back out if you change your mind.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Easy Freecam</h5><p>Press F8 to detach your camera and fly around to view your builds — your character stays put.</p></div></article>
@@ -944,7 +946,7 @@
             <div class="full-mod-grid">
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Sodium</h5><p>Big FPS boost.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Iris</h5><p>Optional shader support. Complementary Reimagined included — press I to enable.</p></div></article>
-              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Lithium, FerriteCore, Krypton</h5><p>Server-side performance optimization.</p></div></article>
+              <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Lithium, FerriteCore</h5><p>Server-side performance optimization.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>Debugify</h5><p>Vanilla bug fixes.</p></div></article>
               <article class="mod full-mod"><span class="mod-mark" aria-hidden="true"></span><div><h5>ImmediatelyFast</h5><p>Snappier menus and screens.</p></div></article>
             </div>
